@@ -338,7 +338,7 @@ ifeq ($(strip $(OLED_FLIP)), yes)
 	MSG_OLED_FLIPPED = (flipped)
 endif
 
-RGB_MATRIX_ENABLE = yes
+
 
 print-summary: cpfirmware
 	printf "\n%s" ' _           _       _             _         ' >&2
