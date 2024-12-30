@@ -2,9 +2,12 @@
 
 enum keymap_layers {
     LAYER_BASE = 0,
-    LAYER_LOWER,
-    LAYER_RAISE,
-    LAYER_POINTER,
+    LAYER_NUM,
+    LAYER_SYM,
+    LAYER_FUN,
+    LAYER_MOUSE,
+    LAYER_NAV,
+    LAYER_MEDIA,
 };
 
 #ifdef CONSOLE_ENABLE
@@ -345,15 +348,33 @@ static void oled_render_layer_state(void) {
         case LAYER_BASE:
             oled_write_ln_P(PSTR("BASE"), false);
             break;
-        case LAYER_LOWER:
-            oled_write_ln_P(PSTR("LOWER"), false);
+        case LAYER_NUM:
+            oled_write_ln_P(PSTR("NUMPAD"), false);
             break;
-        case LAYER_RAISE:
-            oled_write_ln_P(PSTR("RAISE"), false);
+        case LAYER_SYM:
+            oled_write_ln_P(PSTR("SYMBOLS"), false);
             break;
-        case LAYER_POINTER:
-            oled_write_ln_P(PSTR("POINTER"), false);
+        case LAYER_FUN:
+            oled_write_ln_P(PSTR("FUNCTIONS"), false);
             break;
+        case LAYER_MOUSE:
+            oled_write_ln_P(PSTR("MOUSE"), false);
+            break;
+        case LAYER_NAV:
+            oled_write_ln_P(PSTR("NAVIGATION"), false);
+            break;
+        case LAYER_MEDIA:
+            oled_write_ln_P(PSTR("MEDIA"), false);
+            break;
+        // case LAYER_LOWER:
+        //     oled_write_ln_P(PSTR("LOWER"), false);
+        //     break;
+        // case LAYER_RAISE:
+        //     oled_write_ln_P(PSTR("RAISE"), false);
+        //     break;
+        // case LAYER_POINTER:
+        //     oled_write_ln_P(PSTR("POINTER"), false);
+        //     break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
             break;
