@@ -10,7 +10,7 @@ SERIAL_DRIVER = vendor
 
 MSG_POINTING_DEVICE = none
 MSG_OLED = no
-MSG_MASTER_SIDE = right
+MSG_MASTER_SIDE = left
 
 ifeq ($(strip $(POINTING_DEVICE_POSITION)), right)
 	OPT_DEFS += -DPOINTING_DEVICE_POSITION_RIGHT
@@ -337,6 +337,8 @@ ifeq ($(strip $(OLED_FLIP)), yes)
 	OPT_DEFS += -DOLED_FLIP
 	MSG_OLED_FLIPPED = (flipped)
 endif
+
+RGB_MATRIX_ENABLE = yes
 
 print-summary: cpfirmware
 	printf "\n%s" ' _           _       _             _         ' >&2
