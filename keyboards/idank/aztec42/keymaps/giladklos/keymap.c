@@ -6,19 +6,80 @@
 #include <stdio.h>
 #include "features/achordion.h"
 
+enum custom_keycodes {
+    QMKPSSWD = SAFE_RANGE,
+    CPPSTD,
+    EQEQ,
+    NEQ,
+    LSEQ,
+    GTEQ,
 
+};
 
-// ACHORDION SETUP
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  if (!process_achordion(keycode, record)) { return false; }
-  // Your macros ...
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case QMKPSSWD:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("Gtyk^^123KS");
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+    case CPPSTD:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("std::");
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+    case EQEQ:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("==");
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+    case NEQ:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("!=");
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+    case LSEQ:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("<=");
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+    case GTEQ:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING(">=");
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+    }
+    return true;
+};
+// // ACHORDION SETUP
+// bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+//   if (!process_achordion(keycode, record)) { return false; }
+//   // Your macros ...
 
-  return true;
-}
+//   return true;
+// }
 
-void matrix_scan_user(void) {
-  achordion_task();
-}
+// void matrix_scan_user(void) {
+//   achordion_task();
+// }
 
 // void keyboard_post_init_user(void) {
 //     // Set RGB Underglow to Swirl Effect
@@ -87,11 +148,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_NUM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-    KC_TRNS, KC_LEFT_BRACKET,  KC_7,    KC_8,    KC_9,    KC_RIGHT_BRACKET,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    KC_TRNS, KC_LEFT_BRACKET,  KC_7,    KC_8,    KC_9,    KC_RIGHT_BRACKET,    EQEQ,    NEQ,     LSEQ,    GTEQ,    KC_LT,   KC_GT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_TRNS, KC_SEMICOLON,     KC_4,    KC_5,    KC_6,    KC_EQUAL,            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    KC_TRNS, KC_SEMICOLON,     KC_4,    KC_5,    KC_6,    KC_EQUAL,            KC_PPLS, KC_PMNS, KC_PAST, KC_PSLS, KC_PEQL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_TRNS, KC_GRAVE,         KC_1,    KC_2,    KC_3,    KC_BACKSLASH,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    KC_TRNS, KC_GRAVE,         KC_1,    KC_2,    KC_3,    KC_BACKSLASH,        KC_LCBR, KC_LBRC, KC_LPRN, KC_RPRN, KC_RBRC, KC_RCBR,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                         KC_DOT,  KC_0, KC_MINUS,      XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
@@ -153,7 +214,7 @@ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                           
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        KC_MNXT, KC_MPLY,  KC_MPRV,   XXXXXXX,  XXXXXXX,  XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
- XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,     XXXXXXX,                  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,
+ XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,     XXXXXXX,                  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  CPPSTD,  QMKPSSWD,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                         XXXXXXX,  XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
