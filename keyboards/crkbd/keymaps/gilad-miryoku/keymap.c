@@ -19,8 +19,8 @@ bool achordion_chord(uint16_t tap_hold_keycode,
                                            keyrecord_t* tap_hold_record,
                                            uint16_t other_keycode,
                                            keyrecord_t* other_record) {
-  if (tap_hold_record->event.key.row == 3) {return true;}
-  if (tap_hold_record->event.key.row == 7) {return true;}
+  if (tap_hold_record->event.key.row == 3 &&  other_record->event.key.row != 7) {return true;}
+  if (tap_hold_record->event.key.row == 7 &&  other_record->event.key.row != 3) {return true;}
                                            
 
   return achordion_opposite_hands(tap_hold_record, other_record);
@@ -143,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
     KC_TRNS, KC_LEFT_BRACKET,  KC_7,    KC_8,    KC_9,    KC_RIGHT_BRACKET,    EQEQ,    NEQ,     LSEQ,    GTEQ,    KC_LT,   KC_GT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_TRNS, KC_SEMICOLON,     KC_4,    KC_5,    KC_6,    KC_EQUAL,            KC_PPLS, KC_PMNS, KC_PAST, KC_PSLS, KC_PEQL, XXXXXXX,
+    KC_TRNS, KC_SEMICOLON,     KC_4,    KC_5,    KC_6,    KC_EQUAL,            KC_PPLS, KC_PMNS, KC_PAST, KC_PSLS, KC_PEQL, KC_UNDS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     KC_TRNS, KC_GRAVE,         KC_1,    KC_2,    KC_3,    KC_BACKSLASH,        KC_LCBR, KC_LBRC, KC_LPRN, KC_RPRN, KC_RBRC, KC_RCBR,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -160,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     KC_TRNS, KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        KC_LPRN,  KC_RPRN, KC_UNDS,     XXXXXXX, XXXXXXX, XXXXXXX
+                                        XXXXXXX,  XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
