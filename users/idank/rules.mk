@@ -7,6 +7,7 @@ endif
 
 SERIAL_DRIVER = vendor
 # SRC += $(USER_PATH)/idank.c
+SRC += features/achordion.c
 
 MSG_POINTING_DEVICE = none
 MSG_OLED = no

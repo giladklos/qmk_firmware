@@ -17,6 +17,7 @@ enum custom_keycodes {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_achordion(keycode, record)) { return false; }
     switch (keycode) {
     case QMKPSSWD:
         if (record->event.pressed) {
@@ -69,17 +70,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
-// // ACHORDION SETUP
-// bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-//   if (!process_achordion(keycode, record)) { return false; }
-//   // Your macros ...
-
-//   return true;
-// }
-
-// void matrix_scan_user(void) {
-//   achordion_task();
-// }
+// ACHORDION SETUP
+void matrix_scan_user(void) {
+  achordion_task();
+}
 
 // void keyboard_post_init_user(void) {
 //     // Set RGB Underglow to Swirl Effect
@@ -141,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
    KC_LCTL,  KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,                          KC_N,   KC_M,   KC_COMM,  KC_DOT,  KC_SLSH,   KC_LSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        L_MEDIA, L_NAV ,  L_MOUSE,     L_SYM,  L_NUM,   L_FUN
+                                        L_MEDIA, L_MOUSE, L_NAV,      L_NUM,  L_SYM,   L_FUN
                                       //`--------------------------'  `--------------------------'
 
   ),
