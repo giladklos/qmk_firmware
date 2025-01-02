@@ -15,56 +15,55 @@ enum custom_keycodes {
     GTEQ,
 
 };
+bool achordion_chord(uint16_t tap_hold_keycode,
+                                           keyrecord_t* tap_hold_record,
+                                           uint16_t other_keycode,
+                                           keyrecord_t* other_record) {
+  if (tap_hold_record->event.key.row == 3) {return true;}
+  if (tap_hold_record->event.key.row == 7) {return true;}
+                                           
+
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }
     switch (keycode) {
     case QMKPSSWD:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("Gtyk^^123KS");
+            SEND_STRING_DELAY("Gtyk^^123KS",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case CPPSTD:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("std::");
+            SEND_STRING_DELAY("std::",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case EQEQ:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("==");
+            SEND_STRING_DELAY("==",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case NEQ:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("!=");
+            SEND_STRING_DELAY("!=",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case LSEQ:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("<=");
+            SEND_STRING_DELAY("<=",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case GTEQ:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING(">=");
+            SEND_STRING_DELAY(">=",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     }
