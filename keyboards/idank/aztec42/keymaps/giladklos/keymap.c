@@ -88,6 +88,9 @@ LAYER_NAV,
 LAYER_MEDIA,
 };
 
+
+
+
 // layer movement defenitions
 
 #define L_NUM LT(LAYER_NUM, KC_BSPC)
@@ -113,6 +116,12 @@ LAYER_MEDIA,
 #define COPY LCTL(KC_C)
 #define PASTE LCTL(KC_V)
 #define CUT LCTL(KC_X)
+
+
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  return 200;  
+}
 
 // to build: qmk compile -kb crkbd/rev1 -km dvorak_42_key
 
