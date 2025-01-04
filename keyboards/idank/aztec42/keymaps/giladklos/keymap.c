@@ -111,6 +111,7 @@ LAYER_MEDIA,
 #define HOME_K RCTL_T(KC_K)
 #define HOME_L LALT_T(KC_L)
 #define HOME_SCLN RGUI_T(KC_SCLN)
+
 #define UNDO LCTL(KC_Z)
 #define REDO LCTL(KC_Y)
 #define COPY LCTL(KC_C)
