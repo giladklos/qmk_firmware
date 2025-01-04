@@ -15,71 +15,64 @@ enum custom_keycodes {
     GTEQ,
 
 };
+bool achordion_chord(uint16_t tap_hold_keycode,
+                                           keyrecord_t* tap_hold_record,
+                                           uint16_t other_keycode,
+                                           keyrecord_t* other_record) {
+  if (tap_hold_record->event.key.row == 3 &&  other_record->event.key.row != 7) {return true;}
+  if (tap_hold_record->event.key.row == 7 &&  other_record->event.key.row != 3) {return true;}
+                                           
+
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_achordion(keycode, record)) { return false; }
     switch (keycode) {
     case QMKPSSWD:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("Gtyk^^123KS");
+            SEND_STRING_DELAY("Gtyk^^123KS",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case CPPSTD:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("std::");
+            SEND_STRING_DELAY("std::",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case EQEQ:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("==");
+            SEND_STRING_DELAY("==",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case NEQ:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("!=");
+            SEND_STRING_DELAY("!=",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case LSEQ:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("<=");
+            SEND_STRING_DELAY("<=",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     case GTEQ:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING(">=");
+            SEND_STRING_DELAY(">=",25);
         } else {
-            // when keycode QMKBEST is released
         }
         break;
     }
     return true;
 };
-// // ACHORDION SETUP
-// bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-//   if (!process_achordion(keycode, record)) { return false; }
-//   // Your macros ...
-
-//   return true;
-// }
-
-// void matrix_scan_user(void) {
-//   achordion_task();
-// }
+// ACHORDION SETUP
+void matrix_scan_user(void) {
+  achordion_task();
+}
 
 // void keyboard_post_init_user(void) {
 //     // Set RGB Underglow to Swirl Effect
@@ -141,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
    KC_LCTL,  KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,                          KC_N,   KC_M,   KC_COMM,  KC_DOT,  KC_SLSH,   KC_LSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        L_MEDIA, L_NAV ,  L_MOUSE,     L_SYM,  L_NUM,   L_FUN
+                                        L_MEDIA, L_MOUSE, L_NAV,      L_NUM,  L_SYM,   L_FUN
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -150,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
     KC_TRNS, KC_LEFT_BRACKET,  KC_7,    KC_8,    KC_9,    KC_RIGHT_BRACKET,    EQEQ,    NEQ,     LSEQ,    GTEQ,    KC_LT,   KC_GT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_TRNS, KC_SEMICOLON,     KC_4,    KC_5,    KC_6,    KC_EQUAL,            KC_PPLS, KC_PMNS, KC_PAST, KC_PSLS, KC_PEQL, XXXXXXX,
+    KC_TRNS, KC_SEMICOLON,     KC_4,    KC_5,    KC_6,    KC_EQUAL,            KC_PPLS, KC_PMNS, KC_PAST, KC_PSLS, KC_PEQL, KC_UNDS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     KC_TRNS, KC_GRAVE,         KC_1,    KC_2,    KC_3,    KC_BACKSLASH,        KC_LCBR, KC_LBRC, KC_LPRN, KC_RPRN, KC_RBRC, KC_RCBR,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -167,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     KC_TRNS, KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        KC_LPRN,  KC_RPRN, KC_UNDS,     XXXXXXX, XXXXXXX, XXXXXXX
+                                        XXXXXXX,  XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -210,9 +203,9 @@ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                           
   
   [LAYER_MEDIA] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-  XXXXXXX,   XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,                    RM_TOGG,   RM_NEXT,  RM_HUEU,   RM_HUED,  RM_SATU,  RM_SATD,
+  XXXXXXX,   XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,                    UG_TOGG,   UG_NEXT,  UG_HUEU,   UG_HUED,  UG_SATU,  UG_SATD,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
- XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        KC_MNXT, KC_MPLY,  KC_MPRV,   XXXXXXX,  XXXXXXX,  XXXXXXX,
+ XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        KC_MNXT, KC_MPLY,  KC_MPRV,   XXXXXXX,  UG_VALU,  UG_VALD,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,     XXXXXXX,                  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  CPPSTD,  QMKPSSWD,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
