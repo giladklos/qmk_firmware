@@ -15,16 +15,7 @@ enum custom_keycodes {
     GTEQ,
 
 };
-bool achordion_chord(uint16_t tap_hold_keycode,
-                                           keyrecord_t* tap_hold_record,
-                                           uint16_t other_keycode,
-                                           keyrecord_t* other_record) {
-  if (tap_hold_record->event.key.row == 3 &&  other_record->event.key.row != 7) {return true;}
-  if (tap_hold_record->event.key.row == 7 &&  other_record->event.key.row != 3) {return true;}
-                                           
 
-  return achordion_opposite_hands(tap_hold_record, other_record);
-}
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
