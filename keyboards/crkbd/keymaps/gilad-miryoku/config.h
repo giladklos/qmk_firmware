@@ -23,7 +23,7 @@
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define QUICK_TAP_TERM 0
 
-#define PERMISSIVE_HOLD
+// #define PERMISSIVE_HOLD
 
 // #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD 

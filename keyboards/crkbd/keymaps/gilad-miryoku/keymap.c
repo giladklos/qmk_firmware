@@ -15,16 +15,6 @@ enum custom_keycodes {
     GTEQ,
 
 };
-bool achordion_chord(uint16_t tap_hold_keycode,
-                                           keyrecord_t* tap_hold_record,
-                                           uint16_t other_keycode,
-                                           keyrecord_t* other_record) {
-  if (tap_hold_record->event.key.row == 3 &&  other_record->event.key.row != 7) {return true;}
-  if (tap_hold_record->event.key.row == 7 &&  other_record->event.key.row != 3) {return true;}
-                                           
-
-  return achordion_opposite_hands(tap_hold_record, other_record);
-}
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -69,6 +59,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                                           keyrecord_t* tap_hold_record,
+                                           uint16_t other_keycode,
+                                           keyrecord_t* other_record) {
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
 // ACHORDION SETUP
 void matrix_scan_user(void) {
   achordion_task();
@@ -124,7 +122,7 @@ LAYER_MEDIA,
 #define CUT LCTL(KC_X)
 
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  return 200;  
+  return 300;  
 }
 
 // to build: qmk compile -kb crkbd/rev1 -km dvorak_42_key
