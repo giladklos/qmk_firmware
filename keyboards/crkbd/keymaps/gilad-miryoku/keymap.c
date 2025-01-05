@@ -123,6 +123,10 @@ LAYER_MEDIA,
 #define PASTE LCTL(KC_V)
 #define CUT LCTL(KC_X)
 
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  return 200;  
+}
+
 // to build: qmk compile -kb crkbd/rev1 -km dvorak_42_key
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
