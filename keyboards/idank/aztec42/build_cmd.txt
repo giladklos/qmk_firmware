@@ -1,1 +1,1 @@
-make idank/aztec42:giladklos:flash CC=arm-none-eabi-gcc CXX=arm-none-eabi-g++ -e USER_NAME=idank compiler=gcc
+make idank/aztec42:giladklos:flash CC=arm-none-eabi-gcc CXX=arm-none-eabi-g++ -e USER_NAME=idank -e OLED=yes  compiler=gcc

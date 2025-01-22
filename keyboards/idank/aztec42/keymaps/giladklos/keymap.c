@@ -3,8 +3,7 @@
 
 #include QMK_KEYBOARD_H
 #include <stdio.h>
-#include "features/achordion.h"
-
+#include "quantum.h"
 enum custom_keycodes {
   QMKPSSWD = SAFE_RANGE,
   CPPSTD,
@@ -16,9 +15,9 @@ enum custom_keycodes {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  if (!process_achordion(keycode, record)) {
-    return false;
-  }
+  // if (!process_achordion(keycode, record)) {
+  //   return false;
+  // }
   switch (keycode) {
     case QMKPSSWD:
       if (record->event.pressed) {
@@ -66,20 +65,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   return true;
 };
 // ACHORDION SETUP
-void matrix_scan_user(void) { achordion_task(); }
+// void matrix_scan_user(void) { achordion_task(); }
 
-bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode, keyrecord_t* other_record) {
-  if (tap_hold_record->event.key.row == 6) {
-    return true;
-  }
-  return achordion_opposite_hands(tap_hold_record, other_record);
-}
+// bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
+//                      uint16_t other_keycode, keyrecord_t* other_record) {
+//   if (tap_hold_record->event.key.row == 6) {
+//     return true;
+//   }
+//   return achordion_opposite_hands(tap_hold_record, other_record);
+// }
 
 
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  return 1000;
-}
+// uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+//   return 1000;
+// }
 // void keyboard_post_init_user(void) {
 //     // Set RGB Underglow to Swirl Effect
 //     rgblight_mode(RGBLIGHT_MODE_TWINKLE);
@@ -109,17 +108,17 @@ enum keymap_layers {
 #define L_NAV LT(LAYER_NAV, KC_SPC)
 #define L_MEDIA LT(LAYER_MEDIA, KC_ESC)
 
-// Left-hand home row mods
-#define HOME_A LGUI_T(KC_A)
-#define HOME_S LALT_T(KC_S)
-#define HOME_D LCTL_T(KC_D)
-#define HOME_F LSFT_T(KC_F)
+// // Left-hand home row mods
+// #define HOME_A LGUI_T(KC_A)
+// #define HOME_S LALT_T(KC_S)
+// #define HOME_D LCTL_T(KC_D)
+// #define HOME_F LSFT_T(KC_F)
 
-// Right-hand home row mods
-#define HOME_J RSFT_T(KC_J)
-#define HOME_K RCTL_T(KC_K)
-#define HOME_L LALT_T(KC_L)
-#define HOME_SCLN RGUI_T(KC_SCLN)
+// // Right-hand home row mods
+// #define HOME_J RSFT_T(KC_J)
+// #define HOME_K RCTL_T(KC_K)
+// #define HOME_L LALT_T(KC_L)
+// #define HOME_SCLN RGUI_T(KC_SCLN)
 
 #define UNDO LCTL(KC_Z)
 #define REDO LCTL(KC_Y)
